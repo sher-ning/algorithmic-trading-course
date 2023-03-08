@@ -1,36 +1,38 @@
 
-"""
-global variable
-accessible within both outer scope and within function
-module scope spans a single file only e.g. main.py
-"""
+# closure is a function with a free variable
 
-a = 25
+def outer():
+    a = 25
+    name = "python"
 
+    def inner(prefix):
+        print(prefix, name)
 
-def my_func():
-    # lexical scope
-    prefix = "value of 'a' is"
-    print(f"{prefix} {a}")
-    # a = 10 -> this will throw an exception, see scope below
-    # at compile time, 'a' is already created, but not assigned
+    return inner
 
 
-my_func()
+my_func = outer()
+
+# the name variable is a free variable with a reference count
+my_func("hi")
 
 
-"""
-build in scope - top
-global scope - main.py
-local scope - def my_func
+def counter(start):
 
-python will start from local to build-in, 
-once the address of the object is found,
-it will stop searching.
+    def increment(step=1):
+        nonlocal start
+        start += step
+        print(start)
 
-if you define your own print function, the print() will be override
-"""
+    return increment
 
-# access global score variables
-print(globals()['a'])
-print(globals()['my_func'])
+
+my_func = counter(1)
+# start is the free variable
+my_func(1)
+my_func(1)
+my_func(1)
+my_func(1)
+my_func(1)
+my_func(1)
+
