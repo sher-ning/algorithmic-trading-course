@@ -1,0 +1,34 @@
+
+Objects should have states (fields) and behavior (methods)
+
+python does not have private fields
+
+attributes : fields, methods .. what makes an object
+
+to indicate field is private, prefix and '_'
+
+'__' is not for making fields private
+
+functions should be named properly, that you don't have to review the code
+
+use classes when you need to track state
+
+use getattr(Bicycle, 'field_name', default=0) == bicycle.field_name
+user setattr(Bicycle, 'field_name', argument) == bicycle.field_name = argument
+
+class vs instance attributes
+static vs instance attributes
+
+__init__ is an initializer not a constructor
+it does not CREATE the object only initialises it
+in order words, it only populates the instance DICTIONARY
+self is the reference to that object for __init__ to modify
+
+function without self within a class is just a regular function,
+with a self it's a bound method
+
+not the difference between Class(global) and Class objects(instance)
+
+self -> instance.__dict__
+
+help(obj) -> print doc
